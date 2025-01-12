@@ -53,3 +53,26 @@ public:
         return result;
     }
 };
+
+//another solution:
+class Solution{
+public:
+    vector<string> stringMatching(vector<string>& words){
+        int n=words.size();
+        vector<pair<int,string>>vp;
+        for(int i=0; i<n; i++){
+            vp.push_back({words[i].size(),words[i]});
+        }
+        sort(vp.begin(),vp.end());
+        vector<string>ans;
+        for(int i=0; i<n; i++){
+            for(int j=n-1; j>i; j--){
+                if(vp[j].second.find(vp[i].second)!=string::npos){
+                    ans.push_back(vp[i].second);
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+};
